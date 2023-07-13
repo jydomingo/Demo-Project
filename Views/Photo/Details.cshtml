@@ -1,0 +1,70 @@
+﻿@using PhotoSharingAppJessieDomingo.Models;
+
+@{
+    ViewData["Title"] = "Details";
+    PhotoModel Photo = ViewData["Photos"] as PhotoModel;
+    List<CommentModel> Comment = ViewData["Comments"] as List<CommentModel>;
+}
+<h2 class="title">
+</h2>
+
+<div class="detail-container">
+    <div class="photo-details-card">
+        <h3 class="photo-details-title">
+            " @Html.DisplayFor(modelItem => Photo.Title) "
+        </h3>
+
+        <div>
+            <img class="photo-details-img" src="@Url.Action("GetImage", "Photo", new { Id = Photo.PhotoID })" />
+        </div>
+
+        <div class="photo-description">
+            <p class="display-label">
+                @Html.DisplayNameFor(model => Photo.Description)
+            </p>
+
+            <p class="display-field">
+                "@Html.DisplayFor(model => Photo.Description)"
+
+            </p>
+        </div>
+
+
+    </div>
+
+    <div class="comment-container">
+        <div class="row">
+            <div class="col-6">
+                <div class="comment">
+                    @foreach (var item in Comment)
+                    {
+                        <p class="display-field">
+                            @Html.DisplayFor(model => item.Body)
+                        </p>
+                        <p class="details-field">
+                            @Html.DisplayFor(model => item.UserName)
+                            - @Html.DisplayFor(model => item.DateCreated)
+                        </p>
+
+                    }
+                </div><!--End Comment-->
+            </div><!--End col -->
+        </div><!-- End row -->
+        <div class="row">
+            <div class="col-6">
+                <form method="post" enctype="multipart/form-data" asp-action="AddComment">
+
+                    <input type="hidden" id="PhotoID" name="PhotoID" value="@Photo.PhotoID" />
+                    <textarea type="text" class="input" placeholder="Write a comment" id="Body" name="Body"></textarea>
+                    <button class="primaryContained" type="button" onclick="location.href='@Url.Action("Gallery", "Photo")'">Back</button>
+                    <button onclick="add()" class='primaryContained' type="submit">Add Comment</button>
+                </form>
+            </div><!-- End col -->
+        </div><!--End Row -->
+    </div><!--End Container -->
+
+</div>
+
+@section Scripts{
+    <script src="~/js/comments-functions.js"></script>
+}

@@ -1,0 +1,34 @@
+﻿@model PhotoSharingAppJessieDomingo.Models.PhotoModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h2 class="title">
+</h2>
+
+<div class="delete-container">
+    <div class="delete-containers-card">
+        <h3 class="delete-title">Are you sure you want to delete this?</h3>
+        <div class="delete-details-card">
+            <h3 class="delete-details-title">
+                " @Html.DisplayFor(modelItem => Model.Title) "
+            </h3>
+            @if (Model.PhotoFile != null)
+            {
+                <div>
+                    <img class="delete-details-img" src="@Url.Action("GetImage", "Photo", new { Id = Model.PhotoID })" />
+                </div>
+            }
+
+        </div>
+        <div class="delete-confirm">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="PhotoID" />
+                <button id="btn-post" type="submit" class="btn btn-outline-primary">Delete</button>
+                <button class="btn btn-outline-primary" type="button" onclick="location.href='@Url.Action("Gallery", "Photo")'">Back</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PhotoSharingAppJessieDomingo.Models.PhotoModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h2 class="title">
+    
+</h2>
+
+<div class="main-container">
+    <div class="main-title">
+        <h1>The best free stock photos, royalty free images shared by creators.</h1>
+    </div>
+    <form method="post" enctype="multipart/form-data" asp-action="Search">
+    <div class="wrap">
+        <div class="search">
+                <input type="text" class="searchTerm" placeholder="Search for free photos" id="Title" name="Title">
+            <button type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+    </form>
+    <div class="index-title">
+        <h1>Free Stock Photos</h1>
+    </div>
+
+    
+
+    <div class="index-container">
+
+       @foreach (var item in Model)
+        {
+            <div class="photo-index-card">
+
+                @if (item.Title != null)
+                {
+                    <div>
+                        <img class="photo-index-img " src="@Url.Action("GetImage", "photo", new { Id = item.PhotoID })" />
+                    </div>
+                }
+
+            </div>
+        }
+    </div>
+</div>
+
+

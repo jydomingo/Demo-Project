@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="~/css/photo-style.css" />
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/node_modules/popper.js/dist/umd/popper.js"></script>
+    <script src="~/js/menubar-functions.js"></script>
+    <script src="~/js/comments-functions.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <ul class="nav">
+
+        <li><a href="@Url.Action("Index", "Photo")">Home</a></li>
+        <li><a href="@Url.Action("Gallery", "Photo")">Gallery</a></li>
+        <li><a href="@Url.Action("Create", "Photo")">Upload Photo</a></li>
+        <li><a href="@Url.Action("Slide", "Photo")">Slide Show</a></li>
+    </ul>
+    <p><a class="user-link " href="#">@ViewBag.name</a></p>
+    
+    <button class="btn-login" type="button" onclick="location.href='@Url.Action("login", "Photo")'">@ViewBag.Description</button>
+
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", false)
+</body>
+</html>

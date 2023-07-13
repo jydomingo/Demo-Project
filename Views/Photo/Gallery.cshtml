@@ -1,0 +1,41 @@
+﻿@model IEnumerable<PhotoSharingAppJessieDomingo.Models.PhotoModel>
+
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<h2 class="title">
+    
+</h2>
+
+<div class="gallery-container">
+    @foreach (var item in Model)
+    {
+        <div class="photo-gallery-card">
+
+            <h3 class="photo-gallery-title">
+                " @Html.DisplayFor(modelItem => item.Title) "
+            </h3>
+            <p class="gallery-field">
+                by: @Html.DisplayFor(modelItem => item.Owner)
+            </p>
+            @if (item.Title != null)
+            {
+                <div>
+                    <img class="photo-gallery-img" src="@Url.Action("GetImage", "photo", new { Id = item.PhotoID })" />
+                </div>
+            }
+            <div>
+
+                <p class="gallery-field">
+                    Date Created: @Html.DisplayFor(model => item.CreatedDate)
+                </p>
+            </div>
+            <div class="photo-gallery-link">
+                <a asp-action="Details" asp-route-id="@item.PhotoID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PhotoID">Delete</a>
+            </div>
+        </div>
+    }
+</div>
+
